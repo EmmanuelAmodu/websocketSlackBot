@@ -1,0 +1,19 @@
+{
+  "name": "websocket-slackbot",
+  "version": "0.0.1",
+  "description": "A simple websocket for slack bot",
+  "repository": "https://github.com/EmmanuelAmodu/websocketSlackBot.git",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "websocket",
+    "slack",
+    "bot",
+    "chat",
+    "app"
+  ],
+  "author": "Emmanuel Amodu",
+  "license": "ISC"
+}
