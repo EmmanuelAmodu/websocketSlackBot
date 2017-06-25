@@ -6,16 +6,15 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({extended: true}));
 app.use(express.static(__dirname + '/frontend'));
-var dbconn = require(__dirname + "\\dbconn.js");
+var dbconn = require('./dbconn.js');
+var authen = require('./authen.js');
 
 var WebSocketServer = require('websocket').server;
 var server = require('http').createServer();
 var CLIENTS=[];
 
-//app.post('/auth', );
-
-app.get('*', function(req, res){
-    res.sendFile(__dirname + '/frontend/index.html');
+app.post('/auth/login', function(req, res){
+    authen.login(req, res);
 });
 
 server.listen(8080, function() {
@@ -26,11 +25,6 @@ server.listen(8080, function() {
 
 function dropTable(table){
     dbconn.dropTable(table);
-}
-
-function seedUsers(table, seed){
-    console.log(table);
-    for (el in seed) dbconn.insertToCollection(table, seed[el]);
 }
 
 server.on('request', app);
