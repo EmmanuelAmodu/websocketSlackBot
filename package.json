@@ -15,5 +15,8 @@
     "app"
   ],
   "author": "Emmanuel Amodu",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "css-ripple-effect": "^1.0.5"
+  }
 }

@@ -83,6 +83,14 @@ function dbconnect(){
             });
         });
     }
+
+    this.deleteColumn = function(table, data, callback){
+        MongoClient.connect(this.dbUrl, function(err, db) {
+            db.collection(table).findOneAndDelete(data, function(err, res){
+                 if(res !== null) callback();
+            });
+        });
+    }
 }
 
 module.exports = new dbconnect();

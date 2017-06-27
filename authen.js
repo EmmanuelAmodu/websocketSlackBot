@@ -1,4 +1,5 @@
 var dbconn = require(__dirname + "\\dbconn.js");
+var chatroom = require(__dirname + "\\mangConn.js");
 var crypto = require('crypto');
 
 var seed = [{username:"EmmaK", password:"1234"}, {username:"EmmaA", password:"1234"}];
@@ -35,6 +36,7 @@ function authorization(){
                     delete seed.password;
                     dbconn.insertToCollection(table, seed);
                     that.res.send({"username": seed.username, "authHash": seed.authHash});
+                    chatroom.addUser(seed.authHash);
                 }
                 else that.res.sendStatus(409);
             });
@@ -50,6 +52,12 @@ function authorization(){
         var name = text.join("");
         var hash = crypto.createHash('md5').update(name).digest('hex');
         return hash;
+    }
+
+    this.logout = function(req, res){
+        dbconn.deleteColumn("onlineUsers", req.body, function(){
+            res.sendStatus(200);
+        });
     }
 }
 

@@ -13,8 +13,10 @@ var WebSocketServer = require('websocket').server;
 var server = require('http').createServer();
 var CLIENTS=[];
 
-app.post('/auth/login', function(req, res){
-    authen.login(req, res);
+app.post('/auth/:action', function(req, res){
+    if(req.params.action == "login") authen.login(req, res);
+    else if (req.params.action == "logout") authen.logout(req, res);
+    else res.sendStatus(404);
 });
 
 server.listen(8080, function() {
@@ -53,7 +55,7 @@ wsServer.on('request', function(request) {
     }
     
     var connection = request.accept('echo-protocol', request.origin);
-    CLIENTS.push(connection);
+    chatroom.addUser(seed.authHash, connection);
 
     console.log((new Date()) + ' Connection accepted.');
     connection.on('message', function(message) {
