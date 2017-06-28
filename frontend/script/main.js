@@ -8,7 +8,6 @@ var wsSessionData = JSON.parse(localStorage.getItem("session"));
 
 button.addEventListener("click", function(e){
     e.preventDefault();
-
     var http = new XMLHttpRequest();
     var url = "auth/login";
     var params = {"username":username.value, "password":password.value};
@@ -115,7 +114,7 @@ $(".logout").click(function (e) {
 });
 
 function connectToSocket(token){
-    ws = new WebSocket("ws://my_token@127.0.0.1:8080");
+    ws = new WebSocket("ws://127.0.0.1:8080/"+token);
     ws.onopen = function (event) {
         ws.send("Here's some text that the server is urgently awaiting!"); 
     };

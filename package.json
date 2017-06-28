@@ -17,6 +17,6 @@
   "author": "Emmanuel Amodu",
   "license": "ISC",
   "dependencies": {
-    "css-ripple-effect": "^1.0.5"
+    "async": "^2.5.0"
   }
 }

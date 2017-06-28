@@ -91,6 +91,14 @@ function dbconnect(){
             });
         });
     }
+
+    this.update = function(table, data, newData, callback){
+        MongoClient.connect(this.dbUrl, function(err, db) {
+            db.connect(table).update(data, newData, function(err, res){
+                callback();
+            });
+        });
+    }
 }
 
 module.exports = new dbconnect();

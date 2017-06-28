@@ -1,9 +1,8 @@
-var users = {};
+var user = {};
 function connnections(){
 
-    this.addUser = function(token, connnection){
-        if(connnection) this.users[token] = null;
-        else this.user[token] = connnection;
+    this.addUser = function(token, connection){
+        user.token = connection;
     }
 
     this.getUser = function(token){
