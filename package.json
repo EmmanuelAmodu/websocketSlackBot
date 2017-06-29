@@ -17,6 +17,6 @@
   "author": "Emmanuel Amodu",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.5.0"
+    "circular-json": "^0.3.1"
   }
 }

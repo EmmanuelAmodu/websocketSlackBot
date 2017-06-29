@@ -1,12 +1,12 @@
-var user = {};
+var users = {};
 function connnections(){
 
     this.addUser = function(token, connection){
-        user.token = connection;
+        users.token.connection = connection;
     }
 
     this.getUser = function(token){
-        return users.token
+        return users.token;
     }
 
     this.getAllUser = function(){

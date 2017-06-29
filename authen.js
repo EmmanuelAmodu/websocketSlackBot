@@ -29,26 +29,8 @@ function authorization(){
         content = JSON.parse(content);
         delete result.password;
         content[authHash] = result;
-        console.log(content);
         fs.writeFileSync(__dirname+"/chatroom/onlineUsers.json", JSON.stringify(content));
         this.res.send({"username": result.username, "authHash": authHash});
-    }
-
-    this.insertOne = function (table, seed){
-        var that = this;
-        try{
-            dbconn.readCollections(table, {"username": seed.username}, function(result){
-                if(result == null) {
-                    delete seed.password;
-                    console.log(seed);
-                    dbconn.insertToCollection(table, seed);
-                    that.res.send({"username": seed.username, "authHash": seed.authHash});
-                }
-                else that.res.sendStatus(409);
-            });
-        } catch(err){
-            this.res.sendStatus(500);
-        }
     }
 
     this.generateToken = function(){
